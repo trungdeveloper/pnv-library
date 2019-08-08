@@ -6,9 +6,7 @@ import {connect} from 'react-redux';
 import {firestoreConnect} from 'react-redux-firebase';
 
 class Container extends Component {
-
   render() {  
-  console.log(this.props)
   return (
       <div className="container">
         <AddBook />
@@ -18,8 +16,7 @@ class Container extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
+const mapStateToProps = (state, props) => {
   return {
     books: state.firestore.ordered.books,
   };

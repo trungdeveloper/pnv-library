@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "./components/Container";
 import BookDetails from './components/book/BookDetails'
-// import AddBook from './components/book/AddBook'
+import UpdateBook from './components/book/UpdateBook'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 class App extends Component {
   render() {
@@ -11,6 +11,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/'component={Container} />
             <Route exact path='/book/:id' component={BookDetails} />
+            <Route exact path='/book/update/:id' component={UpdateBook} />
             {/* <Route exact path='/add' component={AddBook} /> */}
           </Switch>
         </div>

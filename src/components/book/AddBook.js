@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withFirestore } from 'react-redux-firebase';
+import { addBook } from '../../store/actions/bookActions'
 
 class AddBook extends Component {
   state = {
@@ -15,10 +19,15 @@ class AddBook extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.props.addBook(this.state, this.props);
+    this.setState({
+      title: '',
+      auth: '',
+      summary:''
+    });
   };
 
   render() {
-      console.log(this.state)
       return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -35,6 +44,7 @@ class AddBook extends Component {
                 className="form-control form-control-lg"
                 id="title"
                 placeholder="Title"
+                value={this.state.title}
                 onChange={this.handleChange}
               />
             </div>
@@ -52,6 +62,7 @@ class AddBook extends Component {
                 className="form-control form-control-lg"
                 id="auth"
                 placeholder="Author"
+                value={this.state.auth}
                 onChange={this.handleChange}
               />
             </div>
@@ -68,6 +79,7 @@ class AddBook extends Component {
                 className="form-control form-control-lg"
                 id="summary"
                 placeholder="Summary"
+                value={this.state.summary}
                 onChange={this.handleChange}
               />
             </div>
@@ -85,4 +97,11 @@ class AddBook extends Component {
   }
 }
 
-export default AddBook;
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    addBook: book => dispatch(addBook(book,props))
+  }
+}
+
+export default compose(withFirestore, connect(null, mapDispatchToProps))(AddBook);
