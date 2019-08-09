@@ -50,7 +50,6 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const books = state.firestore.data.books;
   const book = books ? books[id] : null;
-  console.log(state);
   return {
     book: book
   };

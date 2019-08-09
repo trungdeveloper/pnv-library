@@ -42,7 +42,6 @@ class UpdateBook extends Component {
   };
 
   render() {
-    console.log(this.props);
     if (this.props.book) {
       return (
         <div className="container">
